@@ -1,0 +1,31 @@
+version: "3.1"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres
+    environment:
+      # change to you user
+      # its up to you
+      POSTGRES_USER: myuser
+      # change to you password
+      # dont share it to everybody
+      # its up to you
+      POSTGRES_PASSWORD: mypassword
+
+      # remove this if you want to create database
+      # change "mydb" to your database name
+      # POSTGRES_DB: mydb
+
+      # remove this if you want to create database
+      # change "app" or "app_test" to create your databases name or add more name for your databases
+      # POSTGRES_MULTIPLE_DATABASES: app,app_test
+    ports:
+      # this is the default of postgres port it will redirect container port 5432 to local port 5432
+      - "5432:5432"
+    volumes:
+      # this is for persist data postgres so the data will not removed when the container stop
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
